@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'screens/anasayfa.dart';
+import 'package:whatsapp_bot/route/routing.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: AnasayfaScreen(),
+      routerConfig: router,
     );
   }
 }

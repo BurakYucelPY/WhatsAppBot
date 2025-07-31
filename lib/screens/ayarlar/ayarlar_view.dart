@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:whatsapp_bot/route/identify_routes.dart';
 
 class AyarlarView extends StatelessWidget {
   const AyarlarView({super.key});
@@ -44,8 +46,48 @@ class AyarlarView extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.transparent,
-      body: const Center(
-        child: Text('Ayarlar Sayfası'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.security, color: Colors.white),
+              title: const Text('Cihaz İzinleri',
+                  style: TextStyle(color: Colors.white)),
+              trailing: const Icon(Icons.chevron_right, color: Colors.white),
+              onTap: () {
+                context.goNamed(Rotalar.cihazIzinleriName);
+              },
+            ),
+            Divider(color: Colors.white.withOpacity(0.3)),
+            ListTile(
+              leading: const Icon(Icons.palette, color: Colors.white),
+              title: const Text('Tema', style: TextStyle(color: Colors.white)),
+              trailing: const Icon(Icons.chevron_right, color: Colors.white),
+              onTap: () {
+                context.goNamed(Rotalar.temaName);
+              },
+            ),
+            Divider(color: Colors.white.withOpacity(0.3)),
+            ListTile(
+              leading: const Icon(Icons.contacts, color: Colors.white),
+              title:
+                  const Text('Rehber', style: TextStyle(color: Colors.white)),
+              trailing: const Icon(Icons.chevron_right, color: Colors.white),
+              onTap: () {
+                context.goNamed(Rotalar.rehberName);
+              },
+            ),
+            Divider(color: Colors.white.withOpacity(0.3)),
+            ListTile(
+              leading: const Icon(Icons.refresh, color: Colors.white),
+              title:
+                  const Text('Sıfırla', style: TextStyle(color: Colors.white)),
+              trailing: const Icon(Icons.chevron_right, color: Colors.white),
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

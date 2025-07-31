@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 class AnasayfaView extends StatelessWidget {
   const AnasayfaView({super.key});
@@ -9,24 +10,14 @@ class AnasayfaView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF1a2e1a),
-                Color(0xFF213e16),
-                Color(0xFF34600f),
-              ],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black45,
-                blurRadius: 15,
-                offset: Offset(0, 5),
+        flexibleSpace: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.2),
               ),
-            ],
+            ),
           ),
         ),
         title: const Row(
@@ -50,6 +41,7 @@ class AnasayfaView extends StatelessWidget {
           ],
         ),
       ),
+      backgroundColor: Colors.transparent,
       body: const Center(
         child: Text('Anasayfa'),
       ),

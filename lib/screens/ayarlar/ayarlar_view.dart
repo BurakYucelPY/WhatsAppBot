@@ -54,6 +54,11 @@ class AyarlarView extends StatelessWidget {
               leading: const Icon(Icons.security, color: Colors.white),
               title: const Text('Cihaz İzinleri',
                   style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Uygulamanın ihtiyaç duyduğu izinleri yönetin',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
               trailing: const Icon(Icons.chevron_right, color: Colors.white),
               onTap: () {
                 context.goNamed(Rotalar.cihazIzinleriName);
@@ -63,6 +68,11 @@ class AyarlarView extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.palette, color: Colors.white),
               title: const Text('Tema', style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Uygulama temasını değiştirin',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
               trailing: const Icon(Icons.chevron_right, color: Colors.white),
               onTap: () {
                 context.goNamed(Rotalar.temaName);
@@ -73,6 +83,11 @@ class AyarlarView extends StatelessWidget {
               leading: const Icon(Icons.contacts, color: Colors.white),
               title:
                   const Text('Rehber', style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Kayıtlı kişilerinizi düzenleyin veya ekleyin',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
               trailing: const Icon(Icons.chevron_right, color: Colors.white),
               onTap: () {
                 context.goNamed(Rotalar.rehberName);
@@ -83,6 +98,11 @@ class AyarlarView extends StatelessWidget {
               leading: const Icon(Icons.refresh, color: Colors.white),
               title:
                   const Text('Sıfırla', style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Uygulama ayarlarını sıfırlayın',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
               trailing: const Icon(Icons.chevron_right, color: Colors.white),
               onTap: () {
                 context.goNamed(Rotalar.sifirlaName);

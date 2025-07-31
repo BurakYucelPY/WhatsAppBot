@@ -51,6 +51,11 @@ class SifirlaView extends StatelessWidget {
               leading: const Icon(Icons.delete_sweep, color: Colors.white),
               title: const Text('Geçmişi Sıfırla',
                   style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Tüm gönderim geçmişini sıfırlayın',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
               trailing:
                   const Icon(Icons.radio_button_unchecked, color: Colors.white),
               onTap: () {},
@@ -60,6 +65,11 @@ class SifirlaView extends StatelessWidget {
               leading: const Icon(Icons.contact_page, color: Colors.white),
               title: const Text('Rehberi Sıfırla',
                   style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Tüm kayıtlı kişileri sıfırlayın',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
               trailing:
                   const Icon(Icons.radio_button_unchecked, color: Colors.white),
               onTap: () {},
@@ -69,6 +79,11 @@ class SifirlaView extends StatelessWidget {
               leading: const Icon(Icons.restore, color: Colors.white),
               title: const Text('Uygulamayı Sıfırla',
                   style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Tüm veriler ve planlamalar sıfırlanır',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
               trailing:
                   const Icon(Icons.radio_button_unchecked, color: Colors.white),
               onTap: () {},

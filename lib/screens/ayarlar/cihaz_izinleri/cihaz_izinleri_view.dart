@@ -55,6 +55,11 @@ class CihazIzinleriView extends StatelessWidget {
                   leading: const Icon(Icons.notifications, color: Colors.white),
                   title: const Text('Bildirimler',
                       style: TextStyle(color: Colors.white)),
+                  subtitle: Text(
+                    'Bildirim tercihlerinizi değiştirin',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+                  ),
                   trailing: Material(
                     color: Colors.transparent,
                     child: Switch(
@@ -72,6 +77,11 @@ class CihazIzinleriView extends StatelessWidget {
                   leading: const Icon(Icons.people, color: Colors.white),
                   title: const Text('Kişilerim',
                       style: TextStyle(color: Colors.white)),
+                  subtitle: Text(
+                    'Rehber erişim iznini değiştirin',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+                  ),
                   trailing: Switch(
                     value: provider.kisi,
                     onChanged: (value) => provider.toggleKisi(),
@@ -87,6 +97,11 @@ class CihazIzinleriView extends StatelessWidget {
                   leading: const Icon(Icons.mic, color: Colors.white),
                   title: const Text('Mikrafon',
                       style: TextStyle(color: Colors.white)),
+                  subtitle: Text(
+                    'Mikrofon kullanım iznini değiştirin',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+                  ),
                   trailing: Material(
                     color: Colors.transparent,
                     child: Switch(

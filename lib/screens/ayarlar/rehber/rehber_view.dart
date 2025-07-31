@@ -44,8 +44,37 @@ class RehberView extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.transparent,
-      body: const Center(
-        child: Text('Rehber Sayfası'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.security, color: Colors.white),
+              title: const Text('Kişi ekle',
+                  style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Rehbere yeni bir kişi ekleyin',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
+              trailing: const Icon(Icons.chevron_right, color: Colors.white),
+              onTap: () {},
+            ),
+            Divider(color: Colors.white.withOpacity(0.3)),
+            ListTile(
+              leading: const Icon(Icons.palette, color: Colors.white),
+              title: const Text('Kişileri düzenle',
+                  style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Rehberdeki kişilerin bilgilerini düzenleyin',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
+              trailing: const Icon(Icons.chevron_right, color: Colors.white),
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

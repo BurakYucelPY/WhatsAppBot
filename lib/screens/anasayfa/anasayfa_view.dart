@@ -52,7 +52,7 @@ class AnasayfaView extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.grey.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(15),
               ),
               padding: const EdgeInsets.all(16.0),

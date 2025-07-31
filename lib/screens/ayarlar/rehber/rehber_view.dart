@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:whatsapp_bot/route/identify_routes.dart';
 
 class RehberView extends StatelessWidget {
   const RehberView({super.key});
@@ -58,7 +60,9 @@ class RehberView extends StatelessWidget {
                     color: Colors.white.withOpacity(0.7), fontSize: 12.6),
               ),
               trailing: const Icon(Icons.chevron_right, color: Colors.white),
-              onTap: () {},
+              onTap: () {
+                context.goNamed(Rotalar.kisiEkleName);
+              },
             ),
             Divider(color: Colors.white.withOpacity(0.3)),
             ListTile(
@@ -71,7 +75,9 @@ class RehberView extends StatelessWidget {
                     color: Colors.white.withOpacity(0.7), fontSize: 12.6),
               ),
               trailing: const Icon(Icons.chevron_right, color: Colors.white),
-              onTap: () {},
+              onTap: () {
+                context.goNamed(Rotalar.kisiDuzenleName);
+              },
             ),
           ],
         ),

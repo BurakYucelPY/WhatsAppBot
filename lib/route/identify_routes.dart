@@ -6,8 +6,10 @@ class Rotalar {
   static const String ayarlarName = 'ayarlar';
   static const String cihazIzinleriName = 'cihazIzinleri';
   static const String temaName = 'tema';
-  static const String rehberName = 'rehber';
   static const String sifirlaName = 'sifirla';
+  static const String rehberName = 'rehber';
+  static const String kisiDuzenleName = 'kisiDuzenle';
+  static const String kisiEkleName = 'kisiEkle';
 
   //Pathler ------------------------------------------
   static const String anasayfaPath = '/anasayfa';
@@ -16,6 +18,8 @@ class Rotalar {
   static const String ayarlarPath = '/ayarlar';
   static const String cihazIzinleriPath = '/ayarlar/cihaz-izinleri';
   static const String temaPath = '/ayarlar/tema';
-  static const String rehberPath = '/ayarlar/rehber';
   static const String sifirlaPath = '/ayarlar/sifirla';
+  static const String rehberPath = '/ayarlar/rehber';
+  static const String kisiDuzenlePath = '/ayarlar/rehber/kisi-duzenle';
+  static const String kisiEklePath = '/ayarlar/rehber/kisi-ekle';
 }

@@ -1,6 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:whatsapp_bot/screens/ayarlar/cihaz_izinleri/cihaz_izinleri.dart';
 
 class CihazIzinleriView extends StatelessWidget {
   const CihazIzinleriView({super.key});
@@ -44,8 +45,64 @@ class CihazIzinleriView extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.transparent,
-      body: const Center(
-        child: Text('Cihaz İzinleri Sayfası'),
+      body: Consumer<CihazIzinleriProvider>(
+        builder: (context, provider, child) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.notifications, color: Colors.white),
+                  title: const Text('Bildirimler',
+                      style: TextStyle(color: Colors.white)),
+                  trailing: Material(
+                    color: Colors.transparent,
+                    child: Switch(
+                      value: provider.bildirim,
+                      onChanged: (value) => provider.toggleBildirim(),
+                      inactiveThumbColor: Colors.grey,
+                      activeTrackColor: Colors.white.withOpacity(0.3),
+                      inactiveTrackColor: Colors.grey.withOpacity(0.3),
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+                Divider(color: Colors.white.withOpacity(0.3)),
+                ListTile(
+                  leading: const Icon(Icons.people, color: Colors.white),
+                  title: const Text('Kişilerim',
+                      style: TextStyle(color: Colors.white)),
+                  trailing: Switch(
+                    value: provider.kisi,
+                    onChanged: (value) => provider.toggleKisi(),
+                    activeColor: Colors.white,
+                    inactiveThumbColor: Colors.grey,
+                    activeTrackColor: Colors.white.withOpacity(0.3),
+                    inactiveTrackColor: Colors.grey.withOpacity(0.3),
+                  ),
+                  onTap: () {},
+                ),
+                Divider(color: Colors.white.withOpacity(0.3)),
+                ListTile(
+                  leading: const Icon(Icons.mic, color: Colors.white),
+                  title: const Text('Mikrafon',
+                      style: TextStyle(color: Colors.white)),
+                  trailing: Material(
+                    color: Colors.transparent,
+                    child: Switch(
+                      value: provider.mikrofon,
+                      onChanged: (value) => provider.toggleMikrofon(),
+                      inactiveThumbColor: Colors.grey,
+                      activeTrackColor: Colors.white.withOpacity(0.3),
+                      inactiveTrackColor: Colors.grey.withOpacity(0.3),
+                    ),
+                  ),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

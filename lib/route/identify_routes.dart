@@ -7,6 +7,7 @@ class Rotalar {
   static const String cihazIzinleriName = 'cihazIzinleri';
   static const String temaName = 'tema';
   static const String rehberName = 'rehber';
+  static const String sifirlaName = 'sifirla';
 
   //Pathler ------------------------------------------
   static const String anasayfaPath = '/anasayfa';
@@ -16,4 +17,5 @@ class Rotalar {
   static const String cihazIzinleriPath = '/ayarlar/cihaz-izinleri';
   static const String temaPath = '/ayarlar/tema';
   static const String rehberPath = '/ayarlar/rehber';
+  static const String sifirlaPath = '/ayarlar/sifirla';
 }

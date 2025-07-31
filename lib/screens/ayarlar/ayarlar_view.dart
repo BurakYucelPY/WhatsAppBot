@@ -84,7 +84,9 @@ class AyarlarView extends StatelessWidget {
               title:
                   const Text('Sıfırla', style: TextStyle(color: Colors.white)),
               trailing: const Icon(Icons.chevron_right, color: Colors.white),
-              onTap: () {},
+              onTap: () {
+                context.goNamed(Rotalar.sifirlaName);
+              },
             ),
           ],
         ),

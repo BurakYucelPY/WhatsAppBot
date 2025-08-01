@@ -8,19 +8,61 @@ class CalendarProvider extends ChangeNotifier {
   DateTime? _selectedDay;
   CalendarFormat _calendarFormat = CalendarFormat.month;
 
+  bool _modalGorunur = false;
+  DateTime? _modalSecilenTarih;
+  TimeOfDay? _secilenSaat;
+  String _alici = '';
+  String _mesaj = '';
+
   DateTime get focusedDay => _focusedDay;
   DateTime? get selectedDay => _selectedDay;
   CalendarFormat get calendarFormat => _calendarFormat;
+  bool get modalGorunur => _modalGorunur;
+  DateTime? get modalSecilenTarih => _modalSecilenTarih;
+  TimeOfDay? get secilenSaat => _secilenSaat;
+  String get alici => _alici;
+  String get mesaj => _mesaj;
 
-  void selectDay(DateTime selectedDay, DateTime focusedDay) {
+  void gunSec(DateTime selectedDay, DateTime focusedDay) {
     _selectedDay = selectedDay;
     _focusedDay = focusedDay;
+
+    _modalSecilenTarih = selectedDay;
+    _modalGorunur = true;
+
     notifyListeners();
   }
 
-  void changeFormat(CalendarFormat format) {
+  void formatDegistir(CalendarFormat format) {
     _calendarFormat = format;
     notifyListeners();
+  }
+
+  void modalKapat() {
+    _modalGorunur = false;
+    _secilenSaat = null;
+    _alici = '';
+    _mesaj = '';
+    notifyListeners();
+  }
+
+  void saatAyarla(TimeOfDay saat) {
+    _secilenSaat = saat;
+    notifyListeners();
+  }
+
+  void aliciAyarla(String alici) {
+    _alici = alici;
+    notifyListeners();
+  }
+
+  void mesajAyarla(String mesaj) {
+    _mesaj = mesaj;
+    notifyListeners();
+  }
+
+  void mesajPlanla() {
+    modalKapat();
   }
 }
 

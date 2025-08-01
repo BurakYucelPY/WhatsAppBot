@@ -221,7 +221,8 @@ class PlanlayiciView extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(height: 12),
+                                  const SizedBox(height: 2),
+                                  const Divider(),
                                   RichText(
                                     text: TextSpan(
                                       children: [

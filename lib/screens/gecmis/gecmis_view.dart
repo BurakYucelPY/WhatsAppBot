@@ -219,13 +219,14 @@ class GecmisView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 2),
+                        const Divider(),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                'Gönderilecek mesaj:',
+                                'Gönderilen mesaj:',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,

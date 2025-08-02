@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:whatsapp_bot/screens/giris/login.dart';
 import 'dart:ui';
 import 'identify_routes.dart';
 import 'branches.dart';
 import '../screens/ayarlar/tema/tema.dart';
 
 final router = GoRouter(
-  initialLocation: Rotalar.anasayfaPath,
+  initialLocation: Rotalar.loginPath,
   routes: [
+    GoRoute(
+      path: Rotalar.loginPath,
+      name: Rotalar.loginName,
+      builder: (context, state) => const LoginScreen(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return Consumer<ThemeProvider>(

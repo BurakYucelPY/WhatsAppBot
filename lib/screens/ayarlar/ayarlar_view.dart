@@ -108,6 +108,21 @@ class AyarlarView extends StatelessWidget {
                 context.goNamed(Rotalar.sifirlaName);
               },
             ),
+            Divider(color: Colors.white.withOpacity(0.3)),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.white),
+              title: const Text('Çıkış Yap',
+                  style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Uygulamadan hesabınızı çıkış yapın',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
+              trailing: const Icon(Icons.chevron_right, color: Colors.white),
+              onTap: () {
+                context.goNamed(Rotalar.loginName);
+              },
+            ),
           ],
         ),
       ),

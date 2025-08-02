@@ -58,7 +58,50 @@ class SifirlaView extends StatelessWidget {
               ),
               trailing:
                   const Icon(Icons.radio_button_unchecked, color: Colors.white),
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    backgroundColor: Colors.grey.withOpacity(0.8),
+                    title: const Text(
+                      'Emin misiniz?',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    content: const Text(
+                      'Geçmiş verileriniz kalıcı olarak silinecektir.',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.red.withOpacity(0.8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'İptal',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey.withOpacity(0.8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'Sıfırla',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
             Divider(color: Colors.white.withOpacity(0.3)),
             ListTile(
@@ -72,7 +115,50 @@ class SifirlaView extends StatelessWidget {
               ),
               trailing:
                   const Icon(Icons.radio_button_unchecked, color: Colors.white),
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    backgroundColor: Colors.grey.withOpacity(0.8),
+                    title: const Text(
+                      'Emin misiniz?',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    content: const Text(
+                      'Rehber bilgileriniz kalıcı olarak silinecektir.',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.red.withOpacity(0.8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'İptal',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey.withOpacity(0.8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'Sıfırla',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
             Divider(color: Colors.white.withOpacity(0.3)),
             ListTile(
@@ -86,7 +172,50 @@ class SifirlaView extends StatelessWidget {
               ),
               trailing:
                   const Icon(Icons.radio_button_unchecked, color: Colors.white),
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    backgroundColor: Colors.grey.withOpacity(0.8),
+                    title: const Text(
+                      'Emin misiniz?',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    content: const Text(
+                      'Tüm uygulama verileri kalıcı olarak silinecektir.',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.red.withOpacity(0.8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'İptal',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey.withOpacity(0.8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'Sıfırla',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ],
         ),

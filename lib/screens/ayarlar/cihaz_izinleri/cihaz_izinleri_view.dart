@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_bot/screens/ayarlar/cihaz_izinleri/cihaz_izinleri.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CihazIzinleriView extends StatelessWidget {
   const CihazIzinleriView({super.key});
@@ -89,6 +90,29 @@ class CihazIzinleriView extends StatelessWidget {
                     inactiveThumbColor: Colors.grey,
                     activeTrackColor: Colors.white.withOpacity(0.3),
                     inactiveTrackColor: Colors.grey.withOpacity(0.3),
+                  ),
+                  onTap: () {},
+                ),
+                Divider(color: Colors.white.withOpacity(0.3)),
+                ListTile(
+                  leading: const Icon(FontAwesomeIcons.whatsapp,
+                      color: Colors.white),
+                  title: const Text('WhatsApp',
+                      style: TextStyle(color: Colors.white)),
+                  subtitle: Text(
+                    'WhatsApp erişim iznini değiştirin',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+                  ),
+                  trailing: Material(
+                    color: Colors.transparent,
+                    child: Switch(
+                      value: provider.whatsapp,
+                      onChanged: (value) => provider.toggleWhatsapp(),
+                      inactiveThumbColor: Colors.grey,
+                      activeTrackColor: Colors.white.withOpacity(0.3),
+                      inactiveTrackColor: Colors.grey.withOpacity(0.3),
+                    ),
                   ),
                   onTap: () {},
                 ),

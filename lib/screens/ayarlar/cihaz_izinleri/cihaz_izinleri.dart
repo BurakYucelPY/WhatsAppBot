@@ -6,10 +6,12 @@ class CihazIzinleriProvider extends ChangeNotifier {
   bool _bildirim = false;
   bool _kisi = false;
   bool _mikrofon = false;
+  bool _whatsapp = false;
 
   bool get bildirim => _bildirim;
   bool get kisi => _kisi;
   bool get mikrofon => _mikrofon;
+  bool get whatsapp => _whatsapp;
 
   void toggleBildirim() {
     _bildirim = !_bildirim;
@@ -23,6 +25,11 @@ class CihazIzinleriProvider extends ChangeNotifier {
 
   void toggleMikrofon() {
     _mikrofon = !_mikrofon;
+    notifyListeners();
+  }
+
+  void toggleWhatsapp() {
+    _whatsapp = !_whatsapp;
     notifyListeners();
   }
 }

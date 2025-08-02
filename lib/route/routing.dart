@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:whatsapp_bot/screens/giris/login.dart';
+import 'package:whatsapp_bot/screens/giris/login/login.dart';
+import 'package:whatsapp_bot/screens/giris/register/register.dart';
 import 'dart:ui';
 import 'identify_routes.dart';
 import 'branches.dart';
@@ -14,6 +15,11 @@ final router = GoRouter(
       path: Rotalar.loginPath,
       name: Rotalar.loginName,
       builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
+      path: Rotalar.registerPath,
+      name: Rotalar.registerName,
+      builder: (context, state) => const RegisterScreen(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {

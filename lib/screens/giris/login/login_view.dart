@@ -1,7 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:whatsapp_bot/route/identify_routes.dart';
 import 'package:whatsapp_bot/screens/ayarlar/tema/tema.dart';
 import 'login.dart';
 
@@ -345,7 +347,9 @@ class LoginView extends StatelessWidget {
                             ),
                             const SizedBox(height: 24),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.goNamed(Rotalar.registerName);
+                              },
                               child: RichText(
                                 text: TextSpan(
                                   children: [

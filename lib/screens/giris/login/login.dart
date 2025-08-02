@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'login_view.dart';
-import '../../route/identify_routes.dart';
+import '../../../route/identify_routes.dart';
 
 class LoginProvider extends ChangeNotifier {
   String _email = '';

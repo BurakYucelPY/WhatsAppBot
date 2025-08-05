@@ -88,7 +88,7 @@ class KisiEkleView extends StatelessWidget {
                                   SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.08),
+                                              0.1),
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(16),
@@ -243,6 +243,10 @@ class KisiEkleView extends StatelessWidget {
                                               Container(
                                                 padding: const EdgeInsets.only(
                                                     left: 16),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                ),
                                                 child:
                                                     DropdownButtonHideUnderline(
                                                   child: DropdownButton<String>(
@@ -253,8 +257,11 @@ class KisiEkleView extends StatelessWidget {
                                                       color: Colors.white
                                                           .withOpacity(0.7),
                                                     ),
-                                                    dropdownColor:
-                                                        Colors.black87,
+                                                    dropdownColor: Colors.black
+                                                        .withOpacity(0.8),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
                                                     style: const TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 16,

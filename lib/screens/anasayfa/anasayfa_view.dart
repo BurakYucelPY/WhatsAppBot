@@ -182,7 +182,8 @@ class AnasayfaView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 12),
+                          const SizedBox(height: 8),
+                          const Divider(),
                           RichText(
                             text: const TextSpan(
                               children: [

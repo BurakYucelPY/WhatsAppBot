@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'anasayfa_view.dart';
+import '../../models/mesaj_model.dart';
+import '../../providers/mesaj_listesi_provider.dart';
 
 class CalendarProvider extends ChangeNotifier {
   DateTime _focusedDay = DateTime.now();
@@ -61,7 +63,23 @@ class CalendarProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void mesajPlanla() {
+  void mesajPlanla(BuildContext context) {
+    // Yeni mesaj oluştur
+    final yeniMesaj = PlanlananMesaj(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      alici: _alici.trim().isEmpty ? "Alıcı belirtilmedi" : _alici.trim(),
+      tarih: _modalSecilenTarih ?? DateTime.now(),
+      saat: _secilenSaat != null
+          ? "${_secilenSaat!.hour.toString().padLeft(2, '0')}:${_secilenSaat!.minute.toString().padLeft(2, '0')}"
+          : "00:00",
+      mesaj: _mesaj.trim().isEmpty ? "Mesaj belirtilmedi" : _mesaj.trim(),
+      olusturmaTarihi: DateTime.now(),
+    );
+
+    // Global mesaj listesine ekle
+    Provider.of<MesajListesiProvider>(context, listen: false)
+        .mesajEkle(yeniMesaj);
+
     modalKapat();
   }
 }

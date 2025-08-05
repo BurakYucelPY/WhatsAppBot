@@ -3,6 +3,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'anasayfa.dart';
+import '../../providers/mesaj_listesi_provider.dart';
 
 class AnasayfaView extends StatelessWidget {
   const AnasayfaView({super.key});
@@ -134,79 +135,109 @@ class AnasayfaView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Consumer<MesajListesiProvider>(
+                        builder: (context, mesajProvider, child) {
+                          final enYakinMesaj = mesajProvider.enYakinMesaj;
+
+                          if (enYakinMesaj == null) {
+                            return const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Henüz planlanmış mesaj yok',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'Mesaj planlamak için takvimden bir tarih seçin',
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        const TextSpan(
+                                          text: 'Alıcı: ',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: enYakinMesaj.alici,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        '${enYakinMesaj.tarih.day.toString().padLeft(2, '0')}/${enYakinMesaj.tarih.month.toString().padLeft(2, '0')}/${enYakinMesaj.tarih.year}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      Text(
+                                        enYakinMesaj.saat,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              const Divider(),
                               RichText(
-                                text: const TextSpan(
+                                text: TextSpan(
                                   children: [
-                                    TextSpan(
-                                      text: 'Alıcı: ',
+                                    const TextSpan(
+                                      text: 'Gönderilecek mesaj: ',
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 20,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     TextSpan(
-                                      text: 'Burak Yücel',
-                                      style: TextStyle(
+                                      text: enYakinMesaj.mesaj,
+                                      style: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 18,
+                                        fontSize: 14,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    '06/09/2025',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  Text(
-                                    '23:59',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ],
-                          ),
-                          const SizedBox(height: 8),
-                          const Divider(),
-                          RichText(
-                            text: const TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Gönderilecek mesaj: ',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:
-                                      'Bu bir deneme mesajıdır. bu kutucuk işlevsel hale geldiğinde otomatik değişen bir mesaj kutusu olacaktır.',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     ),
                   ],
@@ -380,7 +411,8 @@ class AnasayfaView extends StatelessWidget {
                               const SizedBox(width: 12),
                               Expanded(
                                 child: ElevatedButton(
-                                  onPressed: provider.mesajPlanla,
+                                  onPressed: () =>
+                                      provider.mesajPlanla(context),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
                                         Colors.blueGrey.withOpacity(0.8),

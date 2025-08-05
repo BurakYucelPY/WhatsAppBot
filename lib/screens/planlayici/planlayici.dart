@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_bot/screens/planlayici/planlayici_view.dart';
+import '../../models/mesaj_model.dart';
+import '../../providers/mesaj_listesi_provider.dart';
 
 class PlanlayiciProvider extends ChangeNotifier {
   bool _modalGorunur = false;
@@ -49,7 +51,23 @@ class PlanlayiciProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void mesajPlanla() {
+  void mesajPlanla(BuildContext context) {
+    // Yeni mesaj oluştur
+    final yeniMesaj = PlanlananMesaj(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      alici: _alici.trim().isEmpty ? "Alıcı belirtilmedi" : _alici.trim(),
+      tarih: _secilenTarih ?? DateTime.now(),
+      saat: _secilenSaat != null
+          ? "${_secilenSaat!.hour.toString().padLeft(2, '0')}:${_secilenSaat!.minute.toString().padLeft(2, '0')}"
+          : "00:00",
+      mesaj: _mesaj.trim().isEmpty ? "Mesaj belirtilmedi" : _mesaj.trim(),
+      olusturmaTarihi: DateTime.now(),
+    );
+
+    // Global mesaj listesine ekle
+    Provider.of<MesajListesiProvider>(context, listen: false)
+        .mesajEkle(yeniMesaj);
+
     modalKapat();
   }
 }

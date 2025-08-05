@@ -143,15 +143,42 @@ class AnasayfaView extends StatelessWidget {
                             return const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Henüz planlanmış mesaj yok',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontStyle: FontStyle.italic,
-                                  ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Henüz planlanmış mesaj yok',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          '--/--/----',
+                                          style: TextStyle(
+                                            color: Colors.transparent,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        Text(
+                                          '--:--',
+                                          style: TextStyle(
+                                            color: Colors.transparent,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 8),
+                                Divider(),
                                 Text(
                                   'Mesaj planlamak için takvimden bir tarih seçin',
                                   style: TextStyle(
@@ -162,7 +189,6 @@ class AnasayfaView extends StatelessWidget {
                               ],
                             );
                           }
-
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

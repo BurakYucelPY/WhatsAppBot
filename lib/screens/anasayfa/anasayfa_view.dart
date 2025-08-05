@@ -82,6 +82,9 @@ class AnasayfaView extends StatelessWidget {
                           headerPadding: EdgeInsets.symmetric(vertical: 8),
                         ),
                         calendarStyle: const CalendarStyle(
+                          defaultTextStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                           todayDecoration: BoxDecoration(
                             color: Colors.black45,
                             shape: BoxShape.circle,

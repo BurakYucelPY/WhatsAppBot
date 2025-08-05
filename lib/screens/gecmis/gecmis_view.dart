@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/mesaj_listesi_provider.dart';
 
 class GecmisView extends StatelessWidget {
   const GecmisView({super.key});
@@ -81,173 +83,134 @@ class GecmisView extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 0.85,
-                ),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  final mesajlar = [
-                    {
-                      'alici': 'Ahmet Demir',
-                      'tarih': '10/09/2025',
-                      'saat': '09:30',
-                      'mesaj':
-                          'Toplantıyı unutma! Bugün saat 10:00\'da konferans salonundayız.'
-                    },
-                    {
-                      'alici': 'Zeynep Kaya',
-                      'tarih': '12/09/2025',
-                      'saat': '14:15',
-                      'mesaj':
-                          'Doğum günün kutlu olsun! Harika bir yıl geçirmen dileğiyle.'
-                    },
-                    {
-                      'alici': 'Mehmet Şahin',
-                      'tarih': '15/09/2025',
-                      'saat': '16:45',
-                      'mesaj':
-                          'Proje dosyalarını incelediğin için teşekkürler. Geri bildirimlerini bekliyorum.'
-                    },
-                    {
-                      'alici': 'Fatma Yılmaz',
-                      'tarih': '18/09/2025',
-                      'saat': '11:20',
-                      'mesaj':
-                          'Pazartesi günü doktor randevumu hatırlat lütfen.'
-                    },
-                    {
-                      'alici': 'Ali Öz',
-                      'tarih': '20/09/2025',
-                      'saat': '19:00',
-                      'mesaj':
-                          'Akşam maçı izlemeye gelir misin? Evin yolu üstünde.'
-                    },
-                    {
-                      'alici': 'Ayşe Çelik',
-                      'tarih': '22/09/2025',
-                      'saat': '08:00',
-                      'mesaj':
-                          'Günaydın! Bugün hava çok güzel, piknik planını unutma.'
-                    },
-                    {
-                      'alici': 'Emre Polat',
-                      'tarih': '25/09/2025',
-                      'saat': '13:30',
-                      'mesaj': 'Ödevini bitirdin mi? Yarın son teslim tarihi.'
-                    },
-                    {
-                      'alici': 'Selin Ak',
-                      'tarih': '28/09/2025',
-                      'saat': '17:20',
-                      'mesaj':
-                          'Fotoğrafları gördüm, harika çekmişsin! Tebrikler.'
-                    },
-                    {
-                      'alici': 'Okan Demir',
-                      'tarih': '30/09/2025',
-                      'saat': '21:45',
-                      'mesaj':
-                          'Film tavsiyesi istemiştik. Bu akşam o filmi izleyelim mi?'
-                    },
-                    {
-                      'alici': 'Gül Şimşek',
-                      'tarih': '03/10/2025',
-                      'saat': '12:10',
-                      'mesaj':
-                          'Çay içmeye gel, uzun zamandır görüşmedik. Özledim seni.'
-                    },
-                  ];
+              child: Consumer<MesajListesiProvider>(
+                builder: (context, mesajProvider, child) {
+                  final gecmisMesajlar = mesajProvider.gecmisMesajlar;
 
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(15),
+                  if (gecmisMesajlar.isEmpty) {
+                    return const Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.history_outlined,
+                            size: 80,
+                            color: Colors.white54,
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Henüz gönderilen mesaj yok',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
+                  return GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 0.85,
                     ),
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: RichText(
-                                text: TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: 'Alıcı: ',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: mesajlar[index]['alici'],
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                    itemCount: gecmisMesajlar.length,
+                    itemBuilder: (context, index) {
+                      final mesaj = gecmisMesajlar[index];
+
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              mesajlar[index]['tarih']!,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                            Text(
-                              mesajlar[index]['saat']!,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 2),
-                        const Divider(),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Gönderilen mesaj:',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                  child: RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        const TextSpan(
+                                          text: 'Alıcı: ',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: mesaj.alici,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 4),
-                              Expanded(
-                                child: Text(
-                                  mesajlar[index]['mesaj']!,
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '${mesaj.tarih.day.toString().padLeft(2, '0')}/${mesaj.tarih.month.toString().padLeft(2, '0')}/${mesaj.tarih.year}',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
                                   ),
                                 ),
+                                Text(
+                                  mesaj.saat,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 2),
+                            const Divider(),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Gönderilen mesaj:',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Expanded(
+                                    child: Text(
+                                      mesaj.mesaj,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   );
                 },
               ),

@@ -511,7 +511,7 @@ class KisiEkleView extends StatelessWidget {
                                   filter:
                                       ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                                   child: MaterialButton(
-                                    onPressed: () {},
+                                    onPressed: () => provider.kaydet(context),
                                     child: const Text(
                                       'Kişiyi Kaydet',
                                       style: TextStyle(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../providers/kisi_provider.dart';
+import '../../../../models/kisi.dart';
 import 'kisi_ekle_view.dart';
 
 class KisiEkleProvider extends ChangeNotifier {
@@ -66,7 +68,25 @@ class KisiEkleProvider extends ChangeNotifier {
         _telefon.trim().isNotEmpty;
   }
 
-  void kaydet(BuildContext context) {}
+  void kaydet(BuildContext context) {
+    if (isFormValid) {
+      final kisiProvider = Provider.of<KisiProvider>(context, listen: false);
+
+      final yeniKisi = Kisi(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        isim: _isim.trim(),
+        soyisim: _soyisim.trim(),
+        telefon: _telefon.trim(),
+        eposta: _eposta.trim(),
+        sirket: _sirket.trim(),
+        ulkeKodu: _selectedCountryCode,
+      );
+
+      kisiProvider.kisiEkle(yeniKisi);
+      resetFields();
+      Navigator.of(context).pop();
+    }
+  }
 
   void resetFields() {
     _isim = '';

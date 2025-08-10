@@ -26,15 +26,18 @@ if (flutterVersionName == null) {
 android {
     namespace = "com.example.whatsapp_bot"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    // Bazı eklentiler daha yeni NDK gerektiriyor; uyarıyı gidermek için sabitle.
+    ndkVersion = "25.1.8937393"
 
+    // Java 17 hedefle (AGP 8+ için önerilen)
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        // Java 17'e uyumlu Kotlin hedefi
+        jvmTarget = "17"
     }
 
     defaultConfig {

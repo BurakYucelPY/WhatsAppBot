@@ -13,6 +13,9 @@ dependencies:
   provider: ^6.1.1
   table_calendar: ^3.0.9
   font_awesome_flutter: ^10.5.0
+  # SQLite paketleri (Android AGP 8+ ile uyumlu güncel sürümler)
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:

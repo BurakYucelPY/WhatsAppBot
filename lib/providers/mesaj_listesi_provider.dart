@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import '../models/mesaj_model.dart';
+import '../database/database.dart';
 
 class MesajListesiProvider extends ChangeNotifier {
   final List<PlanlananMesaj> _mesajlar = [];
+  final DatabaseHelper _dbHelper = DatabaseHelper();
+
+  MesajListesiProvider() {
+    loadMesajlar();
+  }
 
   List<PlanlananMesaj> get mesajlar {
     final now = DateTime.now();
@@ -37,8 +43,23 @@ class MesajListesiProvider extends ChangeNotifier {
     return mesajlar.first;
   }
 
-  void mesajEkle(PlanlananMesaj mesaj) {
+  Future<void> loadMesajlar() async {
+    final mesajlarFromDb = await _dbHelper.getMesajlar();
+    _mesajlar
+      ..clear()
+      ..addAll(mesajlarFromDb);
+    notifyListeners();
+  }
+
+  Future<void> mesajEkle(PlanlananMesaj mesaj) async {
+    await _dbHelper.insertMesaj(mesaj);
     _mesajlar.add(mesaj);
+    notifyListeners();
+  }
+
+  Future<void> mesajSil(String id) async {
+    await _dbHelper.deleteMesaj(id);
+    _mesajlar.removeWhere((mesaj) => mesaj.id == id);
     notifyListeners();
   }
 }

@@ -6,12 +6,14 @@ import 'providers/mesaj_listesi_provider.dart';
 import 'providers/kisi_provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ThemeProvider()),
-        ChangeNotifierProvider(create: (context) => MesajListesiProvider()),
-        ChangeNotifierProvider(create: (context) => KisiProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => MesajListesiProvider()),
+        ChangeNotifierProvider(create: (_) => KisiProvider()),
       ],
       child: const MyApp(),
     ),

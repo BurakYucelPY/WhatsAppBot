@@ -32,5 +32,11 @@ class KisiProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> rehberiSifirla() async {
+    await _dbHelper.deleteAllKisiler();
+    _kisiler.clear();
+    notifyListeners();
+  }
+
   int get kisiSayisi => _kisiler.length;
 }

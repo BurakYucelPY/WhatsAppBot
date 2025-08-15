@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../providers/kisi_provider.dart';
 
 class SifirlaView extends StatelessWidget {
   const SifirlaView({super.key});
@@ -62,7 +64,7 @@ class SifirlaView extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    backgroundColor: Colors.grey.withOpacity(0.8),
+                    backgroundColor: Colors.blueGrey.withOpacity(0.8),
                     title: const Text(
                       'Emin misiniz?',
                       style: TextStyle(color: Colors.white),
@@ -119,7 +121,7 @@ class SifirlaView extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    backgroundColor: Colors.grey.withOpacity(0.8),
+                    backgroundColor: Colors.blueGrey.withOpacity(0.8),
                     title: const Text(
                       'Emin misiniz?',
                       style: TextStyle(color: Colors.white),
@@ -143,7 +145,35 @@ class SifirlaView extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () async {
+                          try {
+                            await Provider.of<KisiProvider>(context,
+                                    listen: false)
+                                .rehberiSifirla();
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      const Text('Rehber başarıyla sıfırlandı'),
+                                  backgroundColor:
+                                      Colors.blueGrey.withOpacity(0.8),
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Rehber sıfırlanırken hata oluştu'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          }
+                        },
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.blueGrey.withOpacity(0.8),
                           shape: RoundedRectangleBorder(
@@ -176,7 +206,7 @@ class SifirlaView extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    backgroundColor: Colors.grey.withOpacity(0.8),
+                    backgroundColor: Colors.blueGrey.withOpacity(0.8),
                     title: const Text(
                       'Emin misiniz?',
                       style: TextStyle(color: Colors.white),

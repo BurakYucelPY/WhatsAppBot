@@ -95,6 +95,11 @@ class DatabaseHelper {
     );
   }
 
+  Future<int> deleteAllKisiler() async {
+    final db = await database;
+    return await db.delete('kisiler');
+  }
+
   Future<int> insertMesaj(PlanlananMesaj mesaj) async {
     final db = await database;
     return await db.insert(

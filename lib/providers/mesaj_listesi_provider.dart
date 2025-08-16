@@ -62,4 +62,10 @@ class MesajListesiProvider extends ChangeNotifier {
     _mesajlar.removeWhere((mesaj) => mesaj.id == id);
     notifyListeners();
   }
+
+  Future<void> gecmisiSifirla() async {
+    await _dbHelper.deleteAllMesajlar();
+    _mesajlar.clear();
+    notifyListeners();
+  }
 }

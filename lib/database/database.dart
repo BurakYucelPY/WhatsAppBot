@@ -141,6 +141,11 @@ class DatabaseHelper {
     );
   }
 
+  Future<int> deleteAllMesajlar() async {
+    final db = await database;
+    return await db.delete('mesajlar');
+  }
+
   Future<void> close() async {
     final db = await database;
     db.close();

@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../providers/kisi_provider.dart';
+import '../../../providers/mesaj_listesi_provider.dart';
 
 class SifirlaView extends StatelessWidget {
   const SifirlaView({super.key});
@@ -88,7 +89,35 @@ class SifirlaView extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () async {
+                          try {
+                            await Provider.of<MesajListesiProvider>(context,
+                                    listen: false)
+                                .gecmisiSifirla();
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      const Text('Geçmiş başarıyla sıfırlandı'),
+                                  backgroundColor:
+                                      Colors.blueGrey.withOpacity(0.8),
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Geçmiş sıfırlanırken hata oluştu'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          }
+                        },
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.blueGrey.withOpacity(0.8),
                           shape: RoundedRectangleBorder(

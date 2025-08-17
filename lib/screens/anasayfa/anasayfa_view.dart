@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'anasayfa.dart';
 import '../../providers/mesaj_listesi_provider.dart';
+import '../../providers/kisi_provider.dart';
 
 class AnasayfaView extends StatelessWidget {
   const AnasayfaView({super.key});
@@ -360,24 +361,43 @@ class AnasayfaView extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 8),
-                          TextFormField(
-                            onChanged: provider.aliciAyarla,
-                            style: const TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              hintText: 'Alıcı adını girin',
-                              hintStyle: TextStyle(
-                                  color: Colors.white.withOpacity(0.7)),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    const BorderSide(color: Colors.white),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    const BorderSide(color: Colors.white),
-                              ),
-                            ),
+                          Consumer<KisiProvider>(
+                            builder: (context, kisiProvider, child) {
+                              return DropdownButtonFormField<String>(
+                                value: provider.alici.isEmpty
+                                    ? null
+                                    : provider.alici,
+                                onChanged: (value) =>
+                                    provider.aliciAyarla(value ?? ''),
+                                style: const TextStyle(color: Colors.white),
+                                dropdownColor: Colors.grey.withOpacity(0.8),
+                                decoration: InputDecoration(
+                                  hintText: 'Kişi seçin',
+                                  hintStyle: TextStyle(
+                                      color: Colors.white.withOpacity(0.7)),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide:
+                                        const BorderSide(color: Colors.white),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide:
+                                        const BorderSide(color: Colors.white),
+                                  ),
+                                ),
+                                items: kisiProvider.kisiler.map((kisi) {
+                                  return DropdownMenuItem<String>(
+                                    value: kisi.tamIsim,
+                                    child: Text(
+                                      kisi.tamIsim,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                  );
+                                }).toList(),
+                              );
+                            },
                           ),
                           const SizedBox(height: 16),
                           const Text(

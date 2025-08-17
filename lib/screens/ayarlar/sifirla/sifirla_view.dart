@@ -259,7 +259,40 @@ class SifirlaView extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () async {
+                          final kisiProvider =
+                              Provider.of<KisiProvider>(context, listen: false);
+                          final mesajProvider =
+                              Provider.of<MesajListesiProvider>(context,
+                                  listen: false);
+
+                          try {
+                            await kisiProvider.rehberiSifirla();
+                            await mesajProvider.gecmisiSifirla();
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                      'Uygulama başarıyla sıfırlandı'),
+                                  backgroundColor:
+                                      Colors.blueGrey.withOpacity(0.8),
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      'Uygulama sıfırlanırken hata oluştu'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          }
+                        },
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.blueGrey.withOpacity(0.8),
                           shape: RoundedRectangleBorder(

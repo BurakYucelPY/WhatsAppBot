@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -64,14 +65,46 @@ class CalendarProvider extends ChangeNotifier {
   }
 
   void mesajPlanla(BuildContext context) {
+    // Tarih ve saat kontrolü
+    if (_modalSecilenTarih == null || _secilenSaat == null) {
+      _showThemeDialog(
+        context,
+        Icons.access_time_rounded,
+        'Eksik Bilgi',
+        'Lütfen tarih ve saat bilgilerini seçiniz',
+        Colors.amber,
+      );
+      return;
+    }
+
+    // Seçilen tarih ve saati birleştir
+    final secilenDateTime = DateTime(
+      _modalSecilenTarih!.year,
+      _modalSecilenTarih!.month,
+      _modalSecilenTarih!.day,
+      _secilenSaat!.hour,
+      _secilenSaat!.minute,
+    );
+
+    // Geçmiş tarih kontrolü
+    if (secilenDateTime.isBefore(DateTime.now())) {
+      _showThemeDialog(
+        context,
+        Icons.schedule_outlined,
+        'Geçersiz Zaman',
+        'Geçmiş bir tarihe mesaj planlayamazsınız.\nLütfen gelecek bir tarih seçiniz.',
+        Colors.redAccent,
+      );
+      return;
+    }
+
     // Yeni mesaj oluştur
     final yeniMesaj = PlanlananMesaj(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       alici: _alici.trim().isEmpty ? "Alıcı belirtilmedi" : _alici.trim(),
-      tarih: _modalSecilenTarih ?? DateTime.now(),
-      saat: _secilenSaat != null
-          ? "${_secilenSaat!.hour.toString().padLeft(2, '0')}:${_secilenSaat!.minute.toString().padLeft(2, '0')}"
-          : "00:00",
+      tarih: _modalSecilenTarih!,
+      saat:
+          "${_secilenSaat!.hour.toString().padLeft(2, '0')}:${_secilenSaat!.minute.toString().padLeft(2, '0')}",
       mesaj: _mesaj.trim().isEmpty ? "Mesaj belirtilmedi" : _mesaj.trim(),
       olusturmaTarihi: DateTime.now(),
     );
@@ -81,6 +114,105 @@ class CalendarProvider extends ChangeNotifier {
         .mesajEkle(yeniMesaj);
 
     modalKapat();
+  }
+
+  void _showThemeDialog(
+    BuildContext context,
+    IconData icon,
+    String title,
+    String message,
+    Color accentColor,
+  ) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Dialog(
+            backgroundColor: Colors.transparent,
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.9),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: accentColor.withOpacity(0.3),
+                  width: 1,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 20,
+                    spreadRadius: 5,
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: accentColor.withOpacity(0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      icon,
+                      size: 40,
+                      color: accentColor,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.9),
+                      fontSize: 16,
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: accentColor.withOpacity(0.8),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        'Tamam',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 

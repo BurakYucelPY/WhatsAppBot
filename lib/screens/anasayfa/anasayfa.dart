@@ -64,6 +64,112 @@ class CalendarProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Uyarı kontrolü ve gösterme
+  void uyariKontrolEt(BuildContext context) {
+    final mesajProvider =
+        Provider.of<MesajListesiProvider>(context, listen: false);
+    final uyariGerekenMesajlar = mesajProvider.uyariGerekenMesajlar;
+
+    if (uyariGerekenMesajlar.isNotEmpty) {
+      for (final mesaj in uyariGerekenMesajlar) {
+        _showUyariDialog(context, mesaj);
+      }
+    }
+  }
+
+  void _showUyariDialog(BuildContext context, PlanlananMesaj mesaj) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Dialog(
+            backgroundColor: Colors.transparent,
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.9),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.orange.withOpacity(0.3),
+                  width: 1,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 20,
+                    spreadRadius: 5,
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.orange.withOpacity(0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.notification_important,
+                      size: 40,
+                      color: Colors.orange,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Yarın Planlanmış Mesaj',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Alıcı: ${mesaj.alici}\nSaat: ${mesaj.saat}\nMesaj: ${mesaj.mesaj.length > 50 ? "${mesaj.mesaj.substring(0, 50)}..." : mesaj.mesaj}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.9),
+                      fontSize: 16,
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange.withOpacity(0.8),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        'Tamam',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   void mesajPlanla(BuildContext context) {
     // Tarih ve saat kontrolü
     if (_modalSecilenTarih == null || _secilenSaat == null) {

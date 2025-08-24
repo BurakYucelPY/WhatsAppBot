@@ -11,6 +11,13 @@ class AnasayfaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Sayfa açıldığında uyarı kontrolü yap
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final calendarProvider =
+          Provider.of<CalendarProvider>(context, listen: false);
+      calendarProvider.uyariKontrolEt(context);
+    });
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,

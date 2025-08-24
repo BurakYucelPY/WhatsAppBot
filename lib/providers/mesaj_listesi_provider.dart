@@ -68,4 +68,19 @@ class MesajListesiProvider extends ChangeNotifier {
     _mesajlar.clear();
     notifyListeners();
   }
+
+  // Bir gün kala uyarı kontrolü - sadece tarih kontrolü
+  List<PlanlananMesaj> get uyariGerekenMesajlar {
+    final now = DateTime.now();
+    final yarin = DateTime(now.year, now.month, now.day + 1);
+
+    return _mesajlar.where((mesaj) {
+      final mesajGunu =
+          DateTime(mesaj.tarih.year, mesaj.tarih.month, mesaj.tarih.day);
+      final yarinGunu = DateTime(yarin.year, yarin.month, yarin.day);
+
+      // Mesaj yarına planlanmış
+      return mesajGunu.isAtSameMomentAs(yarinGunu);
+    }).toList();
+  }
 }

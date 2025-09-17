@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:whatsapp_bot/screens/ayarlar/rehber/kisi_duzenle/kisi_duzenle.dart';
 import 'package:whatsapp_bot/screens/ayarlar/rehber/kisi_ekle/kisi_ekle.dart';
 import 'package:whatsapp_bot/screens/ayarlar/sifirla/sifirla.dart';
+import 'package:whatsapp_bot/screens/ayarlar/profil/profil.dart';
 import '../screens/anasayfa/anasayfa.dart';
 import '../screens/planlayici/planlayici.dart';
 import '../screens/gecmis/gecmis.dart';
@@ -70,6 +71,11 @@ final List<StatefulShellBranch> branches = [
           path: Rotalar.sifirlaPath,
           name: Rotalar.sifirlaName,
           builder: (context, state) => const SifirlaScreen(),
+        ),
+        GoRoute(
+          path: Rotalar.profilPath,
+          name: Rotalar.profilName,
+          builder: (context, state) => const ProfilScreen(),
         ),
       ],
     ),

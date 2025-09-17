@@ -4,6 +4,7 @@ import 'app.dart';
 import 'screens/ayarlar/tema/tema.dart';
 import 'providers/mesaj_listesi_provider.dart';
 import 'providers/kisi_provider.dart';
+import 'providers/profil_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +15,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => MesajListesiProvider()),
         ChangeNotifierProvider(create: (_) => KisiProvider()),
+        ChangeNotifierProvider(create: (_) => ProfilProvider()),
       ],
       child: const MyApp(),
     ),

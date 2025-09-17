@@ -52,8 +52,8 @@ class AyarlarView extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.person, color: Colors.white),
-              title: const Text('Profil',
-                  style: TextStyle(color: Colors.white)),
+              title:
+                  const Text('Profil', style: TextStyle(color: Colors.white)),
               subtitle: Text(
                 'Kullanıcı bilgilerinizi düzenleyin',
                 style: TextStyle(

@@ -107,7 +107,7 @@ class ProfilView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                
+
                 // Kullanıcı Bilgileri
                 _buildInfoCard(
                   'Kullanıcı Adı',
@@ -116,7 +116,7 @@ class ProfilView extends StatelessWidget {
                   Icons.person_outline,
                 ),
                 const SizedBox(height: 16),
-                
+
                 _buildInfoCard(
                   'Telefon',
                   telefonController,
@@ -124,7 +124,7 @@ class ProfilView extends StatelessWidget {
                   Icons.phone_outlined,
                 ),
                 const SizedBox(height: 16),
-                
+
                 _buildInfoCard(
                   'E-posta',
                   epostaController,
@@ -132,7 +132,7 @@ class ProfilView extends StatelessWidget {
                   Icons.email_outlined,
                 ),
                 const SizedBox(height: 16),
-                
+
                 _buildInfoCard(
                   'Hakkında',
                   hakkindaController,
@@ -141,11 +141,11 @@ class ProfilView extends StatelessWidget {
                   maxLines: 3,
                 ),
                 const SizedBox(height: 30),
-                
+
                 // Gizlilik Ayarları
                 _buildSectionTitle('Gizlilik Ayarları'),
                 const SizedBox(height: 16),
-                
+
                 _buildSwitchTile(
                   'Bildirimler',
                   'Mesaj bildirimlerini al',
@@ -153,7 +153,7 @@ class ProfilView extends StatelessWidget {
                   onBildirimAyarlari,
                   Icons.notifications_outlined,
                 ),
-                
+
                 _buildSwitchTile(
                   'Çevrimiçi Durumu',
                   'Çevrimiçi durumunu göster',
@@ -161,7 +161,7 @@ class ProfilView extends StatelessWidget {
                   onCevirimiciDurumAyarlari,
                   Icons.circle_outlined,
                 ),
-                
+
                 _buildSwitchTile(
                   'Son Görülme',
                   'Son görülme bilgisini göster',

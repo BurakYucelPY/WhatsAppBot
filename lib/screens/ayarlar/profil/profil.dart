@@ -24,7 +24,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
 
   void _controllersInitialize() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final profilProvider = Provider.of<ProfilProvider>(context, listen: false);
+      final profilProvider =
+          Provider.of<ProfilProvider>(context, listen: false);
       _kullaniciAdiController.text = profilProvider.kullaniciAdi;
       _telefonController.text = profilProvider.telefon;
       _epostaController.text = profilProvider.eposta;

@@ -51,6 +51,21 @@ class AyarlarView extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
+              leading: const Icon(Icons.person, color: Colors.white),
+              title: const Text('Profil',
+                  style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                'Kullanıcı bilgilerinizi düzenleyin',
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.7), fontSize: 12.6),
+              ),
+              trailing: const Icon(Icons.chevron_right, color: Colors.white),
+              onTap: () {
+                context.goNamed(Rotalar.profilName);
+              },
+            ),
+            Divider(color: Colors.white.withOpacity(0.3)),
+            ListTile(
               leading: const Icon(Icons.security, color: Colors.white),
               title: const Text('Cihaz İzinleri',
                   style: TextStyle(color: Colors.white)),

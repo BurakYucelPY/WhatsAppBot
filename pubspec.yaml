@@ -16,6 +16,10 @@ dependencies:
   # SQLite paketleri (Android AGP 8+ ile uyumlu güncel sürümler)
   sqflite: ^2.3.3+1
   path: ^1.9.0
+  # Background service ve HTTP paketleri
+  workmanager: ^0.5.2
+  http: ^1.1.0
+  path_provider: ^2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +30,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/python_scripts/

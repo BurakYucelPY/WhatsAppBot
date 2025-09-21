@@ -1,0 +1,28 @@
+# WhatsApp API Service dizinini git'e dahil etme
+whatsapp_api_service/.env
+
+# Python cache dosyaları
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Veritabanı dosyaları
+*.db
+*.sqlite
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# IDE dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS dosyaları
+.DS_Store
+Thumbs.db

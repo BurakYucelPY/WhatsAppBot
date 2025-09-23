@@ -4,6 +4,7 @@ from typing import List
 import os
 from dotenv import load_dotenv
 import logging
+from contextlib import asynccontextmanager
 
 from database import DatabaseManager, ScheduledMessage, MessageStatus
 from schemas import MessageCreate, MessageResponse, MessageStatusResponse
@@ -18,23 +19,17 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# FastAPI uygulaması
-app = FastAPI(
-    title="WhatsApp Bot API",
-    description="WhatsApp mesaj zamanlayıcı ve gönderme servisi",
-    version="1.0.0"
-)
-
 # Global değişkenler
 db_manager = None
 whatsapp_client = None
 scheduler_service = None
 
-@app.on_event("startup")
-async def startup_event():
-    """Uygulama başlangıç işlemleri"""
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Uygulama lifecycle yönetimi"""
     global db_manager, whatsapp_client, scheduler_service
     
+    # Startup
     # Environment variables kontrolü
     required_env_vars = ["ACCESS_TOKEN", "PHONE_NUMBER_ID", "API_KEY", "DATABASE_URL"]
     missing_vars = [var for var in required_env_vars if not os.getenv(var)]
@@ -57,14 +52,21 @@ async def startup_event():
     scheduler_service.start()
     
     logger.info("WhatsApp Bot API başlatıldı")
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Uygulama kapatılırken temizlik işlemleri"""
-    global scheduler_service
+    
+    yield
+    
+    # Shutdown
     if scheduler_service:
         scheduler_service.stop()
     logger.info("WhatsApp Bot API kapatıldı")
+
+# FastAPI uygulaması
+app = FastAPI(
+    title="WhatsApp Bot API",
+    description="WhatsApp mesaj zamanlayıcı ve gönderme servisi",
+    version="1.0.0",
+    lifespan=lifespan
+)
 
 # Dependency functions
 def get_db():

@@ -57,7 +57,7 @@ Planlanan mesajlarınızı, yaklaşan gönderimleri ve genel durumu tek bakışt
 Mesajınızı yazın, alıcıyı seçin, tarih ve saati belirleyin. Gerisini WhatsAppBot'a bırakın.
 
 <p align="center">
-  <img src="readMeImage/planlayici.png" alt="Planlayıcı" width="85%" style="border-radius: 10px;"><br/>
+  <img src="readMeImage/planlayici.png" alt="Planlayıcı" width="45%" style="border-radius: 10px;"><br/>
   <em>Mesaj Planlama Arayüzü</em>
 </p>
 
@@ -65,7 +65,7 @@ Mesajınızı yazın, alıcıyı seçin, tarih ve saati belirleyin. Gerisini Wha
 Gönderilen, bekleyen veya hatalı mesajlarınızı detaylı bir şekilde inceleyin.
 
 <p align="center">
-  <img src="readMeImage/gecmis.png" alt="Geçmiş" width="85%" style="border-radius: 10px;"><br/>
+  <img src="readMeImage/gecmis.png" alt="Geçmiş" width="45%" style="border-radius: 10px;"><br/>
   <em>Mesaj Geçmişi Ekranı</em>
 </p>
 
@@ -73,7 +73,7 @@ Gönderilen, bekleyen veya hatalı mesajlarınızı detaylı bir şekilde incele
 Sık iletişim kurduğunuz kişileri kaydedin ve hızlıca mesaj planlayın.
 
 <p align="center">
-  <img src="readMeImage/rehber.png" alt="Rehber" width="85%" style="border-radius: 10px;"><br/>
+  <img src="readMeImage/rehber.png" alt="Rehber" width="45%" style="border-radius: 10px;"><br/>
   <em>Rehber Yönetimi</em>
 </p>
 
